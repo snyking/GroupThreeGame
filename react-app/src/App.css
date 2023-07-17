@@ -36,3 +36,75 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* App.css */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #9121ec;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nolog-button {
+  position: relative;
+  bottom: 50px;
+  right: 250px;
+  padding: 50px 60px;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  color: #070707;
+  border: none;
+  border-radius: 10px;
+  opacity: 0.9;
+  cursor: pointer;
+  clip-path: circle(50% at 50% 50%); 
+}
+
+.log-button {
+  position: relative;
+  bottom: 50px;
+  right: -250px;
+  padding: 50px 70px;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  color: #070707;
+  border: none;
+  border-radius: 10px;
+  opacity: 0.9;
+  cursor: pointer;
+  clip-path: circle(50% at 50% 50%);}
+
+.footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+

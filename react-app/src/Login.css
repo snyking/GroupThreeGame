@@ -1,0 +1,78 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  opacity: 0.85;
+  background-color: white;
+  padding: 70px 20px;
+  border-radius: 4px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.titleContainer {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputBox {
+  width: 250px;
+  height: 13px;
+  padding: 10px;
+  margin: 18px 0px;
+  border: 1.8px solid #ccc;
+  border-radius: 4px;
+}
+
+.errorLabel {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.inputButton {
+  margin-top: 25px;
+  width: 120px;
+  height: 40px;
+  background-color: #bdb3c7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.98;
+  font-size: 18px;
+}
+
+.inputButton:hover {
+  background-color: #0069d9;
+}
+
+.registerText {
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.registerText button:hover {
+  background-color: #0069d9;
+}
+
+.registerText button{
+  height: 17px;
+  font-size: 11px;
+  padding: 0px 10px;
+  background-color: #764cac;
+  color: white;
+  opacity: 0.9;
+}
+
+.register-link{
+  width: 80px;
+}
