@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggingIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -70,7 +70,7 @@ const Login = ({ setIsLoggedIn }) => {
       // TODO: Implement the login logic here
       // You can make an API call to verify the user's credentials or handle authentication as per your backend implementation
       console.log("Login successful");
-      setIsLoggedIn(true); // Update isLoggedIn state in App.js
+      setIsLoggingIn(false); // Update isLoggedIn state in App.js
     }
   };
 

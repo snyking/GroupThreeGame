@@ -1,9 +1,11 @@
+/* Form container CSS */
 .mainContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 90px;
+  margin-left: 120px;
   opacity: 0.85;
   background-color: white;
   padding: 70px 20px;
@@ -11,18 +13,21 @@
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Title container CSS */
 .titleContainer {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 30px;
 }
 
+/* Input container CSS */
 .inputContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Input box container CSS */
 .inputBox {
   width: 250px;
   height: 13px;
@@ -32,12 +37,14 @@
   border-radius: 4px;
 }
 
+/* Error lable CSS */
 .errorLabel {
   color: red;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
+/* Input button CSS */
 .inputButton {
   margin-top: 25px;
   width: 120px;
@@ -51,19 +58,23 @@
   font-size: 18px;
 }
 
+/* Input button hover CSS */
 .inputButton:hover {
   background-color: #0069d9;
 }
 
+/* Register text CSS */
 .registerText {
   margin-top: 40px;
   font-size: 14px;
 }
 
+/* Register button hover CSS */
 .registerText button:hover {
   background-color: #0069d9;
 }
 
+/* Register button CSS */
 .registerText button{
   height: 17px;
   font-size: 11px;
@@ -73,6 +84,72 @@
   opacity: 0.9;
 }
 
+/* Register link CSS */
 .register-link{
   width: 80px;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  .mainContainer {
+
+    margin: 20px 0px 0px 0px;
+    padding: 35px 5px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .titleContainer {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .inputBox {
+    width: 210px;
+    height: 11px;
+    margin: 10px 0px 0px 0px;
+  }
+
+  .inputButton {
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .registerText {
+    font-size: 13px;
+  }
+
+  .registerText button{
+    height: 16px;
+    font-size: 10px;
+    padding: 0px 8px;
+  }
+  
+  .register-link{
+    width: 70px;
+  }
+ 
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) { 
+
+} 

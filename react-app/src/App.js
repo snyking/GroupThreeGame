@@ -2,58 +2,48 @@ import React, { useState } from 'react';
 import LibGDXGame from './LibGDXGame';
 import './App.css';
 import Login from './Login';
-
+import Footer from './Footer';
+import TypingBanner from './TypingBanner';
 
 
 function App() {
   const [showGame, setShowGame] = useState(false);
+  const [isLoggingIn,  setIsLoggingIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
  
-
   const handlePlayGame = () => {
     setShowGame(true);
   };
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
+  const handleLoginClick = () => {
+    setIsLoggingIn(true);
   };
 
-  
-
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setShowGame(false); 
+  };
 
   return (
     <div className="app-container">
-      {/* <header className="header">
-          <h1 className="title">Welcome to the Game</h1>
-        </header> */}
-      <main
-        className="main-content"
-        style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL}/landing-background5.jpg)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      {!showGame && !isLoggingIn && <TypingBanner />}
+      <div className="buttons-container">
         {!showGame && (
           <button className="nolog-button" onClick={handlePlayGame}>
-            Play Without Login
+            PLAY GAME
           </button>
         )}
-        {!showGame && !isLoggedIn && (
-          <button className="log-button" onClick={handleLogin}>
-            Play Logged In
+        {!showGame && !isLoggingIn && (
+          <button className="log-button" onClick={handleLoginClick}>
+            LOGIN / REGISTER 
           </button>
         )}
-        {!showGame && isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} />}
+        {!showGame && isLoggingIn && <Login setIsLoggingIn={setIsLoggingIn} />}
         {showGame && <LibGDXGame />}
-      </main>
-      <footer className="footer">
-        <p>&copy; 2023 Your Game Company. All rights reserved.</p>
-      </footer>
+      </div>
+      <Footer />
     </div>
   );
 }
 
 export default App;
-
-

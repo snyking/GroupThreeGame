@@ -1,10 +1,62 @@
 .frame-container {
-  position: fixed;
-  top: 0px; 
-  bottom: 0px; 
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center center;
+    height: 710px;
+    width:1200px;
 }
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .frame-container {
+        height: 600px;
+        width: 400px;
+        margin: 10px;
+    }
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .frame-container {
+        height: 620px;
+        width: 550px;
+        margin: 10px;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .frame-container {
+        height: 610px;
+        width: 650px;
+        margin: 20px;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    .frame-container {
+        height: 610px;
+        width: 950px;
+        margin: 20px;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) { 
+
+    .frame-container {
+        height: 610px;
+        width: 1200px;
+        margin: 20px;
+    }
+
+} 
