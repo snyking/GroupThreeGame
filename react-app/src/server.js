@@ -1,3 +1,115 @@
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000; // Use the PORT environment variable if available, otherwise use port 3000
+const bcrypt = require('bcrypt');
+const MongoClient = require('mongodb').MongoClient;
+const mongoURI = "mongodb+srv://Mayaaddisu33:q0ZQ2H5WYNsQolP9@triviadb.kqknhnh.mongodb.net/?retryWrites=true&w=majority";
+const saltRounds = 12;
+
+app.use(express.json());
+
+let db;
+
+MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(client => {
+    const db = client.db('TriviaDB'); // Replace 'your_database_name' with your actual database name
+
+    // Your Express routes and other server logic go here
+
+    // Start the server
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch(err => console.log(err));
+
+
+  app.post('/register', async (req, res) => {
+    const { username, email, password } = req.body;
+  
+    try {
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+  
+      // Save the user data to the database
+      const result = await db.collection('users').insertOne({ username, email, password: hashedPassword });
+  
+      // Respond with a success message or user ID
+      res.status(201).json({ message: 'User registered successfully', userId: result.insertedId });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred while registering the user' });
+    }
+  });
+  
+  app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Check if the user exists in the database
+        const user = await db.collection('users').findOne({ username });
+        if (!user) {
+          return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        // Compare the provided password with the stored hashed password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Passwords match, user is authenticated
+    res.status(200).json({ message: 'Authentication successful', userId: user._id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while authenticating the user' });
+  }
+});
+
+
+
+// // Username and Password Encryption/Salting 
+// const saltRounds = 10; // Number of salt rounds for hashing
+// const plaintextPassword = 'password123'; // Replace with the actual user's password
+
+// (async () => {
+//   try {
+//     const hash = await bcrypt.hash(plaintextPassword, saltRounds);
+//     // Store the 'hash' value in the database for the user
+//     console.log('Hashed password:', hash);
+
+//     const storedHashedPassword = '...'; // Retrieve the stored hashed password from the database
+
+//     const result = await bcrypt.compare(plaintextPassword, storedHashedPassword);
+//     if (result) {
+//       // Passwords match, user is authenticated
+//       console.log('Authentication successful');
+//     } else {
+//       // Passwords don't match, authentication failed
+//       console.log('Authentication failed');
+//     }
+
+//     // Assume 'user' object contains the user's username, email, and password
+//     const user = {
+//       username: 'john',
+//       email: 'john@example.com',
+//       password: 'password123'
+//     };
+
+//     const userHash = await bcrypt.hash(user.password, saltRounds);
+//     // Update the 'user' object with the hashed password
+//     user.password = userHash;
+
+//     // Save the 'user' object in the database
+//     // Your code for saving the user in MongoDB Atlas goes here
+//   } catch (err) {
+//     // Handle error
+//     console.error(err);
+//   }
+// })()
+
+
+
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = "mongodb+srv://Mayaaddisu33:q0ZQ2H5WYNsQolP9@triviadb.kqknhnh.mongodb.net/?retryWrites=true&w=majority";
 
@@ -142,46 +254,4 @@
 // // ...
 
 
-
-
-
-// // Username and Password Encryption/Salting 
-// const saltRounds = 10; // Number of salt rounds for hashing
-// const plaintextPassword = 'password123'; // Replace with the actual user's password
-
-// (async () => {
-//   try {
-//     const hash = await bcrypt.hash(plaintextPassword, saltRounds);
-//     // Store the 'hash' value in the database for the user
-//     console.log('Hashed password:', hash);
-
-//     const storedHashedPassword = '...'; // Retrieve the stored hashed password from the database
-
-//     const result = await bcrypt.compare(plaintextPassword, storedHashedPassword);
-//     if (result) {
-//       // Passwords match, user is authenticated
-//       console.log('Authentication successful');
-//     } else {
-//       // Passwords don't match, authentication failed
-//       console.log('Authentication failed');
-//     }
-
-//     // Assume 'user' object contains the user's username, email, and password
-//     const user = {
-//       username: 'john',
-//       email: 'john@example.com',
-//       password: 'password123'
-//     };
-
-//     const userHash = await bcrypt.hash(user.password, saltRounds);
-//     // Update the 'user' object with the hashed password
-//     user.password = userHash;
-
-//     // Save the 'user' object in the database
-//     // Your code for saving the user in MongoDB Atlas goes here
-//   } catch (err) {
-//     // Handle error
-//     console.error(err);
-//   }
-// })()
 
