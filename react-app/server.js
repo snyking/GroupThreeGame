@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000; // Use the PORT environment variable if available, otherwise use port 3000
 const bcrypt = require('bcrypt');
 const MongoClient = require('mongodb').MongoClient;
-const mongoURI = "mongodb+srv://Mayaaddisu33:q0ZQ2H5WYNsQolP9@triviadb.kqknhnh.mongodb.net/?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGODB_URI;
 const saltRounds = 12;
 
 app.use(express.json());
@@ -25,14 +27,14 @@ MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 
   app.post('/register', async (req, res) => {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
   
     try {
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, saltRounds);
   
       // Save the user data to the database
-      const result = await db.collection('users').insertOne({ username, email, password: hashedPassword });
+      const result = await db.collection('users').insertOne({ email, password: hashedPassword });
   
       // Respond with a success message or user ID
       res.status(201).json({ message: 'User registered successfully', userId: result.insertedId });
@@ -43,11 +45,11 @@ MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true 
   });
   
   app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
         // Check if the user exists in the database
-        const user = await db.collection('users').findOne({ username });
+        const user = await db.collection('users').findOne({ email });
         if (!user) {
           return res.status(401).json({ error: 'Invalid credentials' });
         }
